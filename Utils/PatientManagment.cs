@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using medical_appointment_system.Interfaces;
 using medical_appointment_system.Models;
+using FluentValidation;
+using FluentValidationException = FluentValidation.ValidationException;
 
 namespace medical_appointment_system.Utils
 {
@@ -31,23 +34,39 @@ namespace medical_appointment_system.Utils
                     case "1":
                         try
                         {
-
+                            // Gather patient details
                             Console.WriteLine("\n--- Register New Patient ---");
                             Console.Write("Name: ");
                             var name = Console.ReadLine();
+
                             Console.Write("Identity Document: ");
                             var documentId = Console.ReadLine();
+
                             Console.Write("Email: ");
                             var email = Console.ReadLine();
+
                             Console.Write("Phone: ");
                             var phone = Console.ReadLine();
+
                             Console.Write("Age: ");
-                            var age = int.Parse(Console.ReadLine() ?? "18");
+                            if (!int.TryParse(Console.ReadLine(), out var age))
+                            {
+                                Console.WriteLine("Invalid age.");
+                                return;
+                            }
 
                             var newPatient = new Patient { Name = name, DocumentId = documentId, Email = email, PhoneNumber = phone, Age = age };
                             _patientService.RegisterPatient(newPatient);
 
                             Console.WriteLine("\nPatient registered successfully!");
+                        }
+                        catch (FluentValidationException ex)
+                        {
+                            Console.WriteLine($"Validation errors");
+                            foreach (var error in ex.Errors)
+                            {
+                                Console.WriteLine($"- {error.ErrorMessage}");
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -58,7 +77,7 @@ namespace medical_appointment_system.Utils
                         break;
 
                     case "2":
-                        Console.WriteLine("\n--- Patient List ---");
+                        Console.WriteLine("--- Patient List ---");
                         var patients = _patientService.GetAllPatients();
                         if (!patients.Any())
                         {
@@ -66,9 +85,9 @@ namespace medical_appointment_system.Utils
                         }
                         else
                         {
-                            foreach (var Patient in patients)
+                            foreach (var patient in patients)
                             {
-                                Console.WriteLine($"ID: {Patient.Id}, Name: {Patient.Name}, Document: {Patient.Id}, Age: {Patient.Age}");
+                                Console.WriteLine($"ID: {patient.Id}, Name: {patient.Name}, Document: {patient.DocumentId}, Age: {patient.Age}");
                             }
                         }
                         Console.WriteLine("\nPress any key to continue...");
@@ -78,7 +97,7 @@ namespace medical_appointment_system.Utils
                     case "3":
                         try
                         {
-                            Console.WriteLine("\n--- Update Patient ---");
+                            Console.WriteLine("--- Update Patient ---");
                             Console.Write("Enter Patient ID to update: ");
 
                             if (!int.TryParse(Console.ReadLine(), out var updateId))
@@ -96,24 +115,58 @@ namespace medical_appointment_system.Utils
                             }
 
                             Console.WriteLine($"Updating Patient: {patient.Name} (ID: {patient.Id})");
-                            Console.Write($"Name ({patient.Name}): ");
 
+
+                            // We request the data to update
+
+                            Console.Write($"Name ({patient.Name}): ");
                             var newName = Console.ReadLine();
+
                             if (!string.IsNullOrEmpty(newName))
                             {
                                 patient.Name = newName;
                             }
 
-                            // We request the data to update
-
                             Console.Write($"Document ID ({patient.DocumentId}): ");
                             var newDocumentId = Console.ReadLine();
+                            if (!string.IsNullOrEmpty(newDocumentId))
+                            {
+                                patient.DocumentId = newDocumentId;
+                            }
 
                             Console.Write($"Email ({patient.Email}): ");
                             var newEmail = Console.ReadLine();
-                            
+                            if (!string.IsNullOrEmpty(newEmail))
+                            {
+                                patient.Email = newEmail;
+                            }
+
+                            Console.Write($"Phone ({patient.PhoneNumber}): ");
+                            var newPhone = Console.ReadLine();
+                            if (!string.IsNullOrEmpty(newPhone))
+                            {
+                                patient.PhoneNumber = newPhone;
+                            }
+
+                            Console.Write($"Age ({patient.Age}): ");
+                            var ageInput = Console.ReadLine();
+                            if (int.TryParse(ageInput, out var newAge))
+                            {
+                                patient.Age = newAge;
+                            }
+
+                            _patientService.UpdatePatient(patient);
+                            Console.WriteLine("\nPatient updated successfully!");
 
 
+                        }
+                        catch (FluentValidationException ex)
+                        {
+                            Console.WriteLine($"Validation errors:");
+                            foreach (var error in ex.Errors)
+                            {
+                                Console.WriteLine($"- {error.ErrorMessage}");
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -127,7 +180,40 @@ namespace medical_appointment_system.Utils
                         {
                             Console.WriteLine("\n--- Delete Patient ---");
                             Console.Write("Enter Patient ID to delete: ");
+                            if (!int.TryParse(Console.ReadLine(), out var deleteId))
+                            {
+                                Console.WriteLine("Invalid ID.");
+                                return;
+                            }
 
+                            var patient = _patientService.GetPatientById(deleteId);
+                            if (patient == null)
+                            {
+                                Console.WriteLine("Patient not found.");
+                                return;
+                            }
+
+                            Console.Write($"Are you sure you want to delete patient {patient.Name} (ID: {patient.Id})? (y/n): ");
+                            var confirm = Console.ReadLine()?.ToLower();
+
+                            if (confirm == "y")
+                            {
+                                _patientService.DeletePatient(deleteId);
+                                Console.WriteLine("Patient deleted successfully.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Deletion cancelled.");
+                            }
+
+                        }
+                        catch (FluentValidationException ex)
+                        {
+                            Console.WriteLine($"Validation errors:");
+                            foreach (var error in ex.Errors)
+                            {
+                                Console.WriteLine($"- {error.ErrorMessage}");
+                            }
                         }
                         catch (Exception ex)
                         {

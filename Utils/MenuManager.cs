@@ -14,7 +14,7 @@ public class MenuManager(IPatientService patientService, IDoctorService doctorSe
     private readonly IAppointmentService _appointmentService = appointmentService;
 
     // The main loop of the application now lives here
-    public void ShowMainMenu()
+    public void ShowMenu()
     {
         while (true)
         {
