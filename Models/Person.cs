@@ -1,5 +1,6 @@
 namespace medical_appointment_system.Models;
 
+//Common properties for both Doctor and Patient
 public abstract class Person
 {
     public int Id { get; set; }
