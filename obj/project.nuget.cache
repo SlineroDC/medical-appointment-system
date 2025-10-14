@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "asu27Un9KKc=",
+  "dgSpecHash": "Jtw/lK4dGjQ=",
   "success": true,
   "projectFilePath": "/home/Coder/RiderProjects/medical-appointment-system/medical-appointment-system.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/Coder/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
