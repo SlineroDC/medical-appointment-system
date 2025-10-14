@@ -1,0 +1,15 @@
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/medical-appointment-system
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/medical-appointment-system.deps.json
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/medical-appointment-system.runtimeconfig.json
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/medical-appointment-system.dll
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/medical-appointment-system.pdb
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.GeneratedMSBuildEditorConfig.editorconfig
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.AssemblyInfoInputs.cache
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.AssemblyInfo.cs
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.csproj.CoreCompileInputs.cache
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.sourcelink.json
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.dll
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/refint/medical-appointment-system.dll
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.pdb
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.genruntimeconfig.cache
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/ref/medical-appointment-system.dll
