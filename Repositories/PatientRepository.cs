@@ -16,6 +16,7 @@ namespace medical_appointment_system.Repositories
             {
                 throw new Exception("A patient with the same DocumentId already exists.");
             }
+            patient.Id = Database.GetNextPatientId();
             Database.Patients.Add(patient);
         }
 
@@ -47,12 +48,16 @@ namespace medical_appointment_system.Repositories
 
         public void Update(Patient patient)
         {
-            var patientToUpdate = Database.Patients.FirstOrDefault(p => p.Id == patient.Id) ?? throw new Exception("Patient not found");
-            patientToUpdate.Name = patient.Name;
-            patientToUpdate.DocumentId = patient.DocumentId;
-            patientToUpdate.Age = patient.Age;
-            patientToUpdate.PhoneNumber = patient.PhoneNumber;
-            patientToUpdate.Email = patient.Email;
+            var patientToUpdate = GetById(patient.Id);
+            if (patientToUpdate != null)
+            {
+                patientToUpdate = Database.Patients.FirstOrDefault(p => p.Id == patient.Id) ?? throw new Exception("Patient not found");
+                patientToUpdate.Name = patient.Name;
+                patientToUpdate.DocumentId = patient.DocumentId;
+                patientToUpdate.Age = patient.Age;
+                patientToUpdate.PhoneNumber = patient.PhoneNumber;
+                patientToUpdate.Email = patient.Email;
+            }
 
         }
     }

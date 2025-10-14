@@ -16,6 +16,7 @@ namespace medical_appointment_system.Repositories
             {
                 throw new Exception("Doctor with the same ID already exists.");
             }
+            doctor.Id = Database.GetNextDoctorId();
             Database.Doctors.Add(doctor);
         }
 
@@ -23,7 +24,7 @@ namespace medical_appointment_system.Repositories
         {
             var doctorRemove = Database.Doctors.FirstOrDefault(d => d.Id == id) ?? throw new Exception("Doctor not found");
             Database.Doctors.Remove(doctorRemove);
-    
+
         }
 
         public IEnumerable<Doctor> GetAll()
@@ -49,7 +50,16 @@ namespace medical_appointment_system.Repositories
 
         public void Update(Doctor entity)
         {
-            throw new NotImplementedException();
+            var doctorToUpdate = GetById(entity.Id);
+            if (doctorToUpdate != null)
+            {
+                doctorToUpdate = Database.Doctors.FirstOrDefault(d => d.Id == entity.Id) ?? throw new Exception("Doctor not found");
+                doctorToUpdate.Name = entity.Name;
+                doctorToUpdate.DocumentId = entity.DocumentId;
+                doctorToUpdate.PhoneNumber = entity.PhoneNumber;
+                doctorToUpdate.Email = entity.Email;
+                doctorToUpdate.Specialty = entity.Specialty;
+            }
         }
     }
 }
