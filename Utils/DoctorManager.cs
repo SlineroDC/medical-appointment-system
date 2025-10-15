@@ -188,7 +188,7 @@ namespace medical_appointment_system.Utils
             }
         }
 
-        private Specialty? SelectSpecialty()
+        private static Specialty? SelectSpecialty()
         {
             Console.WriteLine("\nSelect a Specialty:");
             var specialties = Enum.GetValues(typeof(Specialty));

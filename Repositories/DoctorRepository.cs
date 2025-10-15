@@ -38,7 +38,7 @@ namespace medical_appointment_system.Repositories
 
         public Doctor? GetById(int id)
         {
-            var doctorGet = Database.Doctors.FirstOrDefault(d => d.Id == id) ?? throw new Exception("Doctor not found");
+            var doctorGet = Database.Doctors.FirstOrDefault(d => d.Id == id);
             return doctorGet;
         }
 

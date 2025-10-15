@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using medical_appointment_system.Interfaces;
 using FluentValidationException = FluentValidation.ValidationException;
 using System.Globalization;
+using Org.BouncyCastle.Math.Field;
 
 namespace medical_appointment_system.Utils;
 
@@ -55,6 +56,12 @@ public class AppointmentManager(IAppointmentService appointmentService, IPatient
             foreach (var p in patients) { Console.WriteLine($"  ID: {p.Id}, Name: {p.Name}"); }
             Console.Write("Enter Patient ID: ");
             if (!int.TryParse(Console.ReadLine(), out int patientId)) { Console.WriteLine("Invalid ID format."); return; }
+            var patient = patients.FirstOrDefault(p => p.Id == patientId);
+            if (patient == null)
+            {
+                Console.WriteLine($"No patient found with ID {patientId}. Operation canceled.");
+                return;
+            }
 
             Console.WriteLine("\nAvailable Doctors:");
             var doctors = _doctorService.GetAllDoctors();
@@ -62,6 +69,14 @@ public class AppointmentManager(IAppointmentService appointmentService, IPatient
             foreach (var d in doctors) { Console.WriteLine($"  ID: {d.Id}, Name: {d.Name}, Specialty: {d.Specialty}"); }
             Console.Write("Enter Doctor ID: ");
             if (!int.TryParse(Console.ReadLine(), out int doctorId)) { Console.WriteLine("Invalid ID format."); return; }
+
+            var doctor = doctors.FirstOrDefault(d => d.Id == doctorId);
+            if (doctor == null)
+            {
+                Console.WriteLine($"No patient found with ID {doctorId}. Operation canceled.");
+                return;
+            }
+
 
             Console.Write("Enter Date and Time (e.g., 2025-12-31 14:30): ");
             if (!DateTime.TryParseExact(Console.ReadLine(), "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime appointmentDate))
@@ -71,7 +86,7 @@ public class AppointmentManager(IAppointmentService appointmentService, IPatient
             }
 
             _appointmentService.ScheduleAppointment(patientId, doctorId, appointmentDate);
-            Console.WriteLine("\nAppointment scheduled successfully! A confirmation email has been sent.");
+            Console.WriteLine("\nAppointment scheduled successfully!");
         }
         catch (FluentValidationException ex)
         {
@@ -131,7 +146,7 @@ public class AppointmentManager(IAppointmentService appointmentService, IPatient
                 Console.WriteLine($"- {error.ErrorMessage}");
 
             }
-            
+
         }
         catch (Exception ex)
         {
@@ -201,4 +216,3 @@ public class AppointmentManager(IAppointmentService appointmentService, IPatient
     }
 }
 
-    

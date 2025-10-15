@@ -42,16 +42,16 @@ public class AppointmentService : IAppointmentService
 
     public void ScheduleAppointment(int patientId, int doctorId, DateTime dateTime)
     {
-        var patient = _patientRepository.GetById(patientId) ?? throw new Exception("Patient not found.");
-        var doctor = _doctorRepository.GetById(doctorId) ?? throw new Exception("Doctor not found.");
+        var patient = _patientRepository.GetById(patientId);
+        var doctor = _doctorRepository.GetById(doctorId) ;
 
-        var tempAppointment = new Appointment { Patient = patient, Doctor = doctor, AppointmentDateTime = dateTime };
-        var validator = new AppointmentValidator();
-        var validationResult = validator.Validate(tempAppointment);
-        if (!validationResult.IsValid)
-        {
-            throw new ValidationException(validationResult.Errors);
-        }
+        // var tempAppointment = new Appointment { Patient = patient, Doctor = doctor, AppointmentDateTime = dateTime };
+        // var validator = new AppointmentValidator();
+        // var validationResult = validator.Validate(tempAppointment);
+        // if (!validationResult.IsValid)
+        // {
+        //     throw new ValidationException(validationResult.Errors);
+        // }
 
         var doctorAppointments = _appointmentRepository.GetByDoctorId(doctorId);
         if (doctorAppointments.Any(a => a.AppointmentDateTime == dateTime && a.Status == AppointmentStatus.Scheduled))

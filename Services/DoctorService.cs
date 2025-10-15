@@ -9,6 +9,7 @@ using FluentValidation;
 using medical_appointment_system.Data;
 
 
+
 namespace medical_appointment_system.Services
 {
     public class DoctorService(IDoctorRepository doctorRepository) : IDoctorService
@@ -27,7 +28,7 @@ namespace medical_appointment_system.Services
             {
                 throw new ValidationException(validationResult.Errors);
             }
-            
+
             // If validation passes, call the repository to add the doctor.
             _doctorRepository.Add(doctor);
         }
@@ -72,9 +73,16 @@ namespace medical_appointment_system.Services
             _doctorRepository.Delete(id);
         }
 
-        public IEnumerable<Doctor> GetDoctorsBySpecialty(string specialty)
+        public IEnumerable<Doctor> GetDoctorsBySpecialty(string
+         specialty)
         {
-            throw new NotImplementedException();
+            if (!Enum.TryParse<Specialty>(specialty, true, out Specialty parsedSpecialty))
+            {
+                return [];
+            }
+
+            return Database.Doctors.Where(d => d.Specialty == parsedSpecialty);
+
         }
     }
 }
