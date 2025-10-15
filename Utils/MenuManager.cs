@@ -40,7 +40,8 @@ public class MenuManager(IPatientService patientService, IDoctorService doctorSe
                     doctorMenu.ShowDoctorMenu();
                     break;
                 case "3":
-                    // ShowAppointmentMenu(); (We will create it later)
+                    var appointmentMenu = new AppointmentManager(_appointmentService, _patientService, _doctorService);
+                    appointmentMenu.ShowAppoinmentMenu();
                     break;
                 case "4":
                     return;

@@ -13,7 +13,6 @@ public class AppointmentManager(IAppointmentService appointmentService, IPatient
     private readonly IAppointmentService _appointmentService = appointmentService;
     private readonly IPatientService _patientService = patientService;
     private readonly IDoctorService _doctorService = doctorService;
-
     public void ShowAppoinmentMenu()
     {
         while (true)
