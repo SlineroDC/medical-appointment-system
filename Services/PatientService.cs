@@ -7,6 +7,7 @@ using medical_appointment_system.Models;
 using medical_appointment_system.Repositories;
 using medical_appointment_system.Validators;
 using FluentValidation;
+using FluentValidationException = FluentValidation.ValidationException;
 
 namespace medical_appointment_system.Services
 {
@@ -27,14 +28,15 @@ namespace medical_appointment_system.Services
             var validationResult = validator.Validate(patient);
             if (!validationResult.IsValid)
             {
-                throw new ValidationException(validationResult.Errors);
+                Console.WriteLine("The validation by Fluent");
+                throw new FluentValidationException(validationResult.Errors);
             }
 
             // Check for duplicate document ID
             var existingPatient = _patientRepository.GetByDocumentId(patient.DocumentId);
             if (existingPatient != null)
             {
-                throw new Exception("A patient with the same document ID already exists.");
+                Console.WriteLine("A patient with the same document ID already exists.");
             }
             _patientRepository.Add(patient);
         }
@@ -48,8 +50,9 @@ namespace medical_appointment_system.Services
             var validationResult = validator.Validate(patient);
             if (!validationResult.IsValid)
             {
-                throw new ValidationException(validationResult.Errors);
+                throw new FluentValidationException(validationResult.Errors);
             }
+        
             var existingPatient = _patientRepository.GetById(patient.Id) ?? throw new Exception("Patient not found.");
             _patientRepository.Update(patient);
         }
