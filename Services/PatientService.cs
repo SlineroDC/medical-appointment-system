@@ -16,6 +16,7 @@ namespace medical_appointment_system.Services
 
         public IEnumerable<Patient> GetAllPatients()
         {
+
             return _patientRepository.GetAll();
         }
 

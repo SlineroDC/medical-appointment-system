@@ -1,10 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "Jtw/lK4dGjQ=",
+  "dgSpecHash": "AMCke5WNQDc=",
   "success": true,
   "projectFilePath": "/home/Coder/RiderProjects/medical-appointment-system/medical-appointment-system.csproj",
   "expectedPackageFiles": [
-    "/home/Coder/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512"
+    "/home/Coder/.nuget/packages/bouncycastle.cryptography/2.6.1/bouncycastle.cryptography.2.6.1.nupkg.sha512",
+    "/home/Coder/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512",
+    "/home/Coder/.nuget/packages/mailkit/4.14.1/mailkit.4.14.1.nupkg.sha512",
+    "/home/Coder/.nuget/packages/mimekit/4.14.0/mimekit.4.14.0.nupkg.sha512",
+    "/home/Coder/.nuget/packages/system.formats.asn1/8.0.1/system.formats.asn1.8.0.1.nupkg.sha512",
+    "/home/Coder/.nuget/packages/system.security.cryptography.pkcs/8.0.1/system.security.cryptography.pkcs.8.0.1.nupkg.sha512"
   ],
   "logs": []
 }

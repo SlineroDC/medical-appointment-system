@@ -79,9 +79,13 @@ namespace medical_appointment_system.Utils
                     case "2":
                         Console.WriteLine("--- Patient List ---");
                         var patients = _patientService.GetAllPatients();
+                        
+                        Console.WriteLine($"DEBUG: La lista contiene {patients.Count()} paciente(s).");    
+
                         if (!patients.Any())
                         {
                             Console.WriteLine("No patients registered.");
+                            return;
                         }
                         else
                         {

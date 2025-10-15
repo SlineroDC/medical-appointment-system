@@ -8,6 +8,6 @@ namespace medical_appointment_system.Interfaces
 {
     public interface IDoctorRepository : IRepository<Doctor>
     {
-        Doctor? GetBySpecialty(Specialty specialty);
+        IEnumerable<Doctor> GetBySpecialty(Specialty specialty);
     }
 }

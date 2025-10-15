@@ -9,6 +9,7 @@ namespace medical_appointment_system.Utils;
 
 public class MenuManager(IPatientService patientService, IDoctorService doctorService, IAppointmentService appointmentService)
 {
+    
     private readonly IPatientService _patientService = patientService;
     private readonly IDoctorService _doctorService = doctorService;
     private readonly IAppointmentService _appointmentService = appointmentService;
@@ -35,7 +36,8 @@ public class MenuManager(IPatientService patientService, IDoctorService doctorSe
                     patientMenu.ShowPatientMenu();
                     break;
                 case "2":
-                    // ShowDoctorMenu(); (We will create it later)
+                    var doctorMenu = new DoctorManager(_doctorService);
+                    doctorMenu.ShowDoctorMenu();
                     break;
                 case "3":
                     // ShowAppointmentMenu(); (We will create it later)

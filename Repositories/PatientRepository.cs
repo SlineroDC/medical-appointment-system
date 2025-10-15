@@ -12,10 +12,6 @@ namespace medical_appointment_system.Repositories
     {
         public void Add(Patient patient)
         {
-            if (Database.Patients.Any(p => p.DocumentId == patient.DocumentId))
-            {
-                throw new Exception("A patient with the same DocumentId already exists.");
-            }
             patient.Id = Database.GetNextPatientId();
             Database.Patients.Add(patient);
         }
@@ -28,21 +24,17 @@ namespace medical_appointment_system.Repositories
 
         public IEnumerable<Patient> GetAll()
         {
-            if (Database.Patients.Count == 0)
-            {
-                throw new Exception("No patients found.");
-            }
             return Database.Patients;
         }
 
         public Patient? GetByDocumentId(string documentId)
         {
-            throw new NotImplementedException();
+            return Database.Patients.FirstOrDefault(p => p.DocumentId == documentId);
         }
 
         public Patient? GetById(int id)
         {
-            var patient = Database.Patients.FirstOrDefault(p => p.Id == id) ?? throw new Exception("Patient not found");
+            var patient = Database.Patients.FirstOrDefault(p => p.Id == id);
             return patient;
         }
 
@@ -51,7 +43,7 @@ namespace medical_appointment_system.Repositories
             var patientToUpdate = GetById(patient.Id);
             if (patientToUpdate != null)
             {
-                patientToUpdate = Database.Patients.FirstOrDefault(p => p.Id == patient.Id) ?? throw new Exception("Patient not found");
+                patientToUpdate = Database.Patients.FirstOrDefault(p => p.Id == patient.Id);
                 patientToUpdate.Name = patient.Name;
                 patientToUpdate.DocumentId = patient.DocumentId;
                 patientToUpdate.Age = patient.Age;

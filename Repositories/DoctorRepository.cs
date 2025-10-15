@@ -42,9 +42,9 @@ namespace medical_appointment_system.Repositories
             return doctorGet;
         }
 
-        public Doctor? GetBySpecialty(Specialty specialty)
+        public IEnumerable<Doctor>GetBySpecialty(Specialty specialty)
         {
-            var doctorSpecialty = Database.Doctors.FirstOrDefault(d => d.Specialty == specialty);
+            var doctorSpecialty = Database.Doctors.Where(d => d.Specialty == specialty);
             return doctorSpecialty;
         }
 
@@ -61,5 +61,6 @@ namespace medical_appointment_system.Repositories
                 doctorToUpdate.Specialty = entity.Specialty;
             }
         }
+
     }
 }

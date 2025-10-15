@@ -11,5 +11,10 @@ namespace medical_appointment_system.Interfaces
         void RegisterDoctor(Doctor doctor);
         IEnumerable<Doctor> GetAllDoctors();
         IEnumerable<Doctor> GetDoctorsBySpecialty(string specialty);
+
+        Doctor? GetDoctorById(int id);
+        void UpdateDoctor(Doctor doctor);
+
+        void DeleteDoctor(int id);
     }
 }

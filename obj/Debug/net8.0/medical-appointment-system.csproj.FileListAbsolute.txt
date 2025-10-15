@@ -13,3 +13,6 @@
 /home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.pdb
 /home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.genruntimeconfig.cache
 /home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/ref/medical-appointment-system.dll
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/FluentValidation.dll
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.csproj.AssemblyReference.cache
+/home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-.77A4163B.Up2Date
