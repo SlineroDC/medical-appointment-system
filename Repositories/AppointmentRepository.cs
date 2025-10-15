@@ -42,13 +42,14 @@ namespace medical_appointment_system.Repositories
             return appointment;
         }
 
-        public IEnumerable<Appointment> GetByDoctorId(int doctorId)
+        public IEnumerable<Appointment> GetAppointmentByDoctorId(int doctorId)
         {
 
             var appointment = Database.Appointments.Where(a => a.Doctor != null && a.Doctor.Id == doctorId);
             if (!appointment.Any())
             {
-                throw new Exception("No appointments found for the given doctor ID");
+                Console.WriteLine("The doctor doesnt has any appoinment");
+                return [];
             }
             return appointment;
         }

@@ -7,7 +7,7 @@ namespace medical_appointment_system.Interfaces
 {
     public interface IAppointmentRepository : IRepository<Appointment>
     {
-        IEnumerable<Appointment> GetByDoctorId(int doctorId);
+        IEnumerable<Appointment> GetAppointmentByDoctorId(int doctorId);
         IEnumerable<Appointment> GetByPatientId(int patientId);
         IEnumerable<Appointment> GetByDate(DateTime date);
     }

@@ -38,8 +38,8 @@ namespace medical_appointment_system.Repositories
 
         public Doctor? GetById(int id)
         {
-            var doctorGet = Database.Doctors.FirstOrDefault(d => d.Id == id);
-            return doctorGet;
+            var doctor = Database.Doctors.FirstOrDefault(d => d.Id == id);
+            return doctor;
         }
 
         public IEnumerable<Doctor>GetBySpecialty(Specialty specialty)
