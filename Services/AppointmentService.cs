@@ -15,18 +15,17 @@ public class AppointmentService : IAppointmentService
     private readonly IAppointmentRepository _appointmentRepository;
     private readonly IPatientRepository _patientRepository;
     private readonly IDoctorRepository _doctorRepository;
-    private readonly IEmailService _emailService;
 
     public AppointmentService(
        IAppointmentRepository appointmentRepository,
        IPatientRepository patientRepository,
-       IDoctorRepository doctorRepository,
-       IEmailService emailService)
+       IDoctorRepository doctorRepository
+       )
     {
         _appointmentRepository = appointmentRepository;
         _patientRepository = patientRepository;
         _doctorRepository = doctorRepository;
-        _emailService = emailService;
+    
     }
 
     public void CancelAppointment(int appointmentId)
@@ -75,7 +74,6 @@ public class AppointmentService : IAppointmentService
         };
 
         _appointmentRepository.Add(newAppointment);
-        _emailService.SendAppointmentConfirmation(newAppointment);
     }
 
 }

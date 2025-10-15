@@ -22,4 +22,4 @@ var menu = new MenuManager(patientService, doctorService, appointmentService);
 // --- RUN ---
 
 // Start the application's main loop.
-menu.ShowMainMenu();
+menu.ShowMenu();
