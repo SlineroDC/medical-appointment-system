@@ -1,6 +1,6 @@
 # Medical Appointment Management System
 
-A C# console application designed to digitize and manage medical appointments, patients, and doctors for the San Vicente Hospital, replacing their manual, paper-based system. [cite: 5, 11] This project is developed as a performance test evaluation.
+A C# console application designed to digitize and manage medical appointments, patients, and doctors for the San Vicente Hospital, replacing their manual, paper-based system.  This project is developed as a performance test evaluation.
 
 ---
 | Coder Info    |                |
@@ -59,12 +59,12 @@ Follow these steps to get the application running on your local machine. [cite: 
 1.  **Clone the repository:**
     Open your terminal and run the following command:
     ```bash
-    git clone [URL_OF_YOUR_GITHUB_REPOSITORY]
+    git clone [https://github.com/SlineroDC/medical-appointment-system.git]
     ```
 
 2.  **Navigate to the project directory:**
     ```bash
-    cd [NAME_OF_YOUR_PROJECT_FOLDER]
+    cd [medical-appointment-system]
     ```
 
 3.  **Build the project:**

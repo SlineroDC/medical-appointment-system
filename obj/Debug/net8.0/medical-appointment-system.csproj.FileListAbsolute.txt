@@ -16,3 +16,8 @@
 /home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/FluentValidation.dll
 /home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-appointment-system.csproj.AssemblyReference.cache
 /home/Coder/RiderProjects/medical-appointment-system/obj/Debug/net8.0/medical-.77A4163B.Up2Date
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/BouncyCastle.Cryptography.dll
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/MailKit.dll
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/MimeKit.dll
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/System.Security.Cryptography.Pkcs.dll
+/home/Coder/RiderProjects/medical-appointment-system/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
